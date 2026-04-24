@@ -26,25 +26,37 @@ import streamlit as st
 # CONFIG — edit paths here if your files live elsewhere
 # ═══════════════════════════════════════════════════════════════════════════════
 ROOT = Path(__file__).parent
-MODEL_JOBLIB = ROOT / "best_ablation_model_g5.joblib"
-MODEL_TXT    = ROOT / "best_ablation_model_g5.txt"
-BG_PARQUET   = ROOT / "shap_background_sample.parquet"
-BG_CSV       = ROOT / "shap_background_sample.csv"
+MODEL_JOBLIB = ROOT / "lgbm_model.joblib"
+MODEL_TXT    = ROOT / "lgbm_model.txt"
+BG_PARQUET   = ROOT / "shap_sample_data_lgbm.parquet"
+BG_CSV       = ROOT / "shap_sample_data_lgbm.csv"
 
 # ═══════════════════════════════════════════════════════════════════════════════
 # FEATURE METADATA
 # ═══════════════════════════════════════════════════════════════════════════════
 # Exact order the LightGBM model expects (taken from the .txt header).
-FEATURE_ORDER = [
-    "cms_segid", "final_gender_code", "age_level", "pvalue_level",
-    "shopping_level", "occupation", "new_user_class_level",
-    "customer", "price", "brand", "cate_id", "pid",
-    "user_count_1H", "user_ctr_1H", "user_count_1D", "user_ctr_1D",
-    "user_count_3D", "user_ctr_3D",
-    "gender_cate", "age_cate", "hour_cate", "user_cate_affinity",
-    "dayofweek", "is_weekend", "hour", "time_since_last_click",
-    "price_bucket",
+# FEATURE_ORDER = [
+#     "cms_segid", "final_gender_code", "age_level", "pvalue_level",
+#     "shopping_level", "occupation", "new_user_class_level",
+#     "customer", "price", "brand", "cate_id", "pid",
+#     "user_count_1H", "user_ctr_1H", "user_count_1D", "user_ctr_1D",
+#     "user_count_3D", "user_ctr_3D",
+#     "gender_cate", "age_cate", "hour_cate", "user_cate_affinity",
+#     "dayofweek", "is_weekend", "hour", "time_since_last_click",
+#     "price_bucket",
+# ]
+Feature_order = [
+    'final_gender_code', 'age_level', 'occupation', 'shopping_level',
+    'cms_segid', 'cms_group_id', 'pvalue_level', 'new_user_class_level',
+    'hour', 'weekday', 'price',
+    'ad_ctr_cv', 'user_ctr_cv',
+    'brand_te', 'cate_id_te', 'pid_te', 'cms_group_id_te',
+    'gender_cate', 'age_cate', 'brand_cate',
+    'time_since_last_click', 'user_count_1H', 'user_ctr_1H',
+    'user_count_1D', 'user_ctr_1D', 'user_count_3D', 'user_ctr_3D',
+    'affinity_score', 'total_interactions', 'interest_recency' # lgbm features
 ]
+
 
 LABEL = {
     "cms_segid":             "Micro-segment ID",
