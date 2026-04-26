@@ -26,7 +26,7 @@ import streamlit as st
 # ═══════════════════════════════════════════════════════════════════════════════
 # CONFIG — edit paths here if your files live elsewhere
 # ═══════════════════════════════════════════════════════════════════════════════
-ROOT = Path(__file__).parent
+ROOT = Path(__file__).parent.parent
 MODEL_JOBLIB = ROOT / "models" / "lgbm_model.joblib"
 MODEL_TXT    = ROOT / "models" / "lgbm_model.txt"   
 BG_PARQUET   = ROOT / "data" / "shap_sample_data_lgbm.parquet"
