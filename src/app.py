@@ -35,16 +35,7 @@ BG_CSV       = ROOT / "shap_sample_data_lgbm.csv"
 # FEATURE METADATA
 # ═══════════════════════════════════════════════════════════════════════════════
 # Exact order the LightGBM model expects (taken from the .txt header).
-# FEATURE_ORDER = [
-#     "cms_segid", "final_gender_code", "age_level", "pvalue_level",
-#     "shopping_level", "occupation", "new_user_class_level",
-#     "customer", "price", "brand", "cate_id", "pid",
-#     "user_count_1H", "user_ctr_1H", "user_count_1D", "user_ctr_1D",
-#     "user_count_3D", "user_ctr_3D",
-#     "gender_cate", "age_cate", "hour_cate", "user_cate_affinity",
-#     "dayofweek", "is_weekend", "hour", "time_since_last_click",
-#     "price_bucket",
-# ]
+
 Feature_order = [
     'final_gender_code', 'age_level', 'occupation', 'shopping_level',
     'cms_segid', 'cms_group_id', 'pvalue_level', 'new_user_class_level',
@@ -59,33 +50,38 @@ Feature_order = [
 
 
 LABEL = {
-    "cms_segid":             "Micro-segment ID",
     "final_gender_code":     "Gender",
     "age_level":             "Age bracket",
-    "pvalue_level":          "Consumption level",
-    "shopping_level":        "Shopping depth",
     "occupation":            "Student",
+    "shopping_level":        "Shopping depth",
+    "cms_segid":             "Micro-segment ID",
+    "cms_group_id":           "Micro-segment group",  
+    "pvalue_level":          "Consumption level",
     "new_user_class_level":  "City tier",
-    "customer":              "Advertiser ID",
+    "hour":                  "Hour of day",
+    "weekday":               "Day of week",
     "price":                 "Log price",
-    "brand":                 "Brand CTR (target-enc.)",
-    "cate_id":               "Category CTR (target-enc.)",
-    "pid":                   "Placement CTR (target-enc.)",
+    "ad_ctr_cv":             "Ad's historical CTR (cross-val)",
+    "user_ctr_cv":           "User's historical CTR (cross-val)",
+    "brand_te":             "Brand CTR (target-enc.)",
+    "cate_id_te":           "Category CTR (target-enc.)",
+    "pid_te":                "Placement CTR (target-enc.)",
+    "cms_group_id_te":      "Micro-segment group CTR (target-enc.)",    
+    "gender_cate":           "Gender × Category CTR",
+    "age_cate":              "Age × Category CTR",
+    "brand_cate":            "Brand × Category CTR",
+    "time_since_last_click": "Seconds since last click",
     "user_count_1H":         "Impressions last hour",
     "user_ctr_1H":           "CTR last hour",
     "user_count_1D":         "Impressions last day",
     "user_ctr_1D":           "CTR last day",
     "user_count_3D":         "Impressions last 3 days",
     "user_ctr_3D":           "CTR last 3 days",
-    "gender_cate":           "Gender × Category CTR",
-    "age_cate":              "Age × Category CTR",
-    "hour_cate":             "Hour × Category CTR",
-    "user_cate_affinity":    "User × Category affinity",
-    "dayofweek":             "Day of week",
-    "is_weekend":            "Weekend",
-    "hour":                  "Hour of day",
-    "time_since_last_click": "Seconds since last click",
-    "price_bucket":          "Price bucket",
+ 
+    # Affinity features
+    'affinity_score':     "User-category affinity score", 
+    'total_interactions': "Total interactions", 
+    'interest_recency':   "Interest recency" ,
 }
 
 # Pure-categorical features → selectbox with labels
