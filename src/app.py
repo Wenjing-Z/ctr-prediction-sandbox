@@ -27,10 +27,10 @@ import streamlit as st
 # CONFIG — edit paths here if your files live elsewhere
 # ═══════════════════════════════════════════════════════════════════════════════
 ROOT = Path(__file__).parent
-MODEL_JOBLIB = ROOT / "lgbm_model.joblib"
-MODEL_TXT    = ROOT / "lgbm_model.txt"
-BG_PARQUET   = ROOT / "shap_sample_data_lgbm.parquet"
-BG_CSV       = ROOT / "shap_sample_data_lgbm.csv"
+MODEL_JOBLIB = ROOT / "models" / "lgbm_model.joblib"
+MODEL_TXT    = ROOT / "models" / "lgbm_model.txt"   
+BG_PARQUET   = ROOT / "data" / "shap_sample_data_lgbm.parquet"
+BG_CSV       = ROOT / "data" / "shap_sample_data_lgbm.csv"
 
 # ═══════════════════════════════════════════════════════════════════════════════
 # FEATURE METADATA (30 features)
